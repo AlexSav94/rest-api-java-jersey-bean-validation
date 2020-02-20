@@ -2,6 +2,7 @@ package org.softspiders.jersey.validation;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -20,7 +21,7 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN + ";charset=utf-8") // might be overridden on an application method level
     @Consumes(MediaType.TEXT_PLAIN + ";charset=utf-8")
-    public String getIt(@NotBlank @QueryParam("input") String input) {
+    public String getIt(@NotBlank @QueryParam("input") String input, @Pattern(regexp = "123", message = "wrong pattern") @QueryParam("pattern") String pattern) {
         return "This is your input: " + input;
     }
 
